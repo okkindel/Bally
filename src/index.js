@@ -1,45 +1,25 @@
-var canvas, context, fps;
+var canvas, context;
+var particle;
 window.onload = function () {
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
-    fps = 60;
+
+    const fps = 60;
+    particle = new Particle(canvas.width / 2, canvas.height / 2, 'red');
+
     setInterval(function () {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        // functions
+
+        draw();
         update();
 
     }, 1000 / fps);
 }
 
-var Sx = 0, Sy = 0;
+function draw() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    particle.show();
+}
 
 function update() {
-    Sy += 2;
-    Sx += 2;
-    circle(Sx, Sy, 20, 'red')
-}
-
-function text(txt, fnt, x, y, c) {
-    context.font = fnt;
-    context.fillStyle = c;
-    context.fillText(txt, x, y);
-}
-
-function rect(x, y, w, h, c) {
-    context.fillStyle = c;
-    context.fillRect(x, y, w, h);
-}
-
-function line(sx, sy, dx, dy, c) {
-    context.moveTo(sx, sy);
-    context.lineTo(dx, dy);
-    context.strokeStyle = c;
-    context.stroke();
-}
-
-function circle(x, y, r, c) {
-    context.beginPath();
-    context.arc(x, y, r, 0, 2 * Math.PI, false);
-    context.strokeStyle = c;
-    context.stroke();
+    particle.update();
 }
