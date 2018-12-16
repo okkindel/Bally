@@ -1,5 +1,5 @@
 function Particle(x, y) {
-    this.x = x; this.y = y; this.r = Math.random() * 50; 
+    this.x = x; this.y = y; this.r = Math.random() * 50 + 10;
     this.col = getRandomColor();
     this.velx = 0; this.vely = 0;
     this.accx = 0; this.accy = 0;

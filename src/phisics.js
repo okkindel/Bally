@@ -43,10 +43,16 @@ function checkCollision(particle) {
                 ball.accy > 0 ? ball.addForceY(-accy) : ball.addForceY(accy);
                 particle.accy > 0 ? particle.addForceY(-accy) : particle.addForceY(accy);
             }
+
             if (divide(particle, ball)) {
-                dump = particle.r;
-                particle.x -= ball.r;
-                ball.x += dump;
+                const max_rad = Math.max(ball.r, particle.r)
+                if (particle.x < ball.x) {
+                    particle.x -= max_rad;
+                    ball.x += max_rad;
+                } else {
+                    particle.x += max_rad;
+                    ball.x -= max_rad;
+                }
             }
         }
     });

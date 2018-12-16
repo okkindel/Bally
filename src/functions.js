@@ -31,9 +31,9 @@ function getCollision(vecA, vecB) {
 }
 
 function divide(vecA, vecB) {
-    const r = (vecA.r + vecB.r) * (vecA.r + vecB.r);
+    const r_min = Math.min(vecA.r, vecB.r)
     const dist = (vecA.x - vecB.x) * (vecA.x - vecB.x) + (vecA.y - vecB.y) * (vecA.y - vecB.y);
-    return dist < 2 * r / 3;
+    return Math.sqrt(dist) < 2 * r_min;
 }
 
 function getRandomColor() {

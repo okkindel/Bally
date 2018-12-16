@@ -17,7 +17,7 @@ window.onload = function () {
         clear();
         draw();
         update();
-        
+
     }, 1000 / fps);
 }
 
@@ -44,6 +44,6 @@ function update() {
 document.addEventListener('mousedown', function () {
     const particle = new Particle(event.clientX, event.clientY);
     particle.addForceX(Math.random() - 0.5);
-    particle.addForceY(Math.random() - 3);
+    particle.addForceY(Math.random() * (-10));
     particles.push(particle);
 });
