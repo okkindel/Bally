@@ -4,7 +4,7 @@ function Particle(x, y) {
     this.velx = 0; this.vely = 0;
     this.accx = 0; this.accy = 0;
 
-    this.restitution = 10;
+    this.mass = this.r;
 
     this.show = function () {
         circle(this.x, this.y, this.r, this.col);

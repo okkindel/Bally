@@ -48,10 +48,11 @@ function checkCollision(particle) {
 }
 
 // swap velocities
-function swap (vecX, vecY) {
-    dump = { vx: vecX.velx, vy: vecX.vely };
-    vecX.velx = vecY.velx;
-    vecX.vely = vecY.vely;
-    vecY.velx = dump.vx;
-    vecY.vely = dump.vy;
+function swap(vecX, vecY) {
+    // const masses = vecX.mass + vecY.mass;
+    dump = { vx: vecX.velx, vy: vecX.vely, m: vecX.mass };
+    vecX.velx = vecY.velx /* * (vecY.mass / masses)*/;
+    vecX.vely = vecY.vely /* * (vecY.mass / masses)*/;
+    vecY.velx = dump.vx /* * (dump.m / masses)*/;
+    vecY.vely = dump.vy /* * (dump.m / masses)*/;
 }
