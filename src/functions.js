@@ -12,6 +12,7 @@ function rect(x, y, w, h, c) {
 function line(sx, sy, dx, dy, c) {
     context.moveTo(sx, sy);
     context.lineTo(dx, dy);
+    context.lineWidth = 5;
     context.strokeStyle = c;
     context.stroke();
 }
@@ -21,14 +22,18 @@ function circle(x, y, r, c) {
     context.arc(x, y, r, 0, 2 * Math.PI, false);
     context.fillStyle = c;
     context.fill();
-    context.strokeStyle = c;
-    context.stroke;
 }
 
 function getCollision(vecA, vecB) {
     const r = (vecA.r + vecB.r) * (vecA.r + vecB.r);
     const dist = (vecA.x - vecB.x) * (vecA.x - vecB.x) + (vecA.y - vecB.y) * (vecA.y - vecB.y);
     return dist < r;
+}
+
+function divide(vecA, vecB) {
+    const r = (vecA.r + vecB.r) * (vecA.r + vecB.r);
+    const dist = (vecA.x - vecB.x) * (vecA.x - vecB.x) + (vecA.y - vecB.y) * (vecA.y - vecB.y);
+    return dist < 2 * r / 3;
 }
 
 function getRandomColor() {
