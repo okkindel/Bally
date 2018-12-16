@@ -1,22 +1,57 @@
 function bounce(particle) {
 
-    if (particle.y + particle.w >= canvas.height / 2 && particle.vely > 0) {
+    // Bounce on floor
+    if (particle.y + particle.r >= canvas.height / 2 && particle.vely > 0) {
         particle.addForceY(-particle.vely - particle.vely / 1.25);
     }
-    
-    if (particle.y > canvas.height / 2 - particle.w && particle.vely < 1) {
-        particle.y = canvas.height / 2 - particle.w;
+
+    // Dont drown in floor
+    if (particle.y > canvas.height / 2 - particle.r && particle.vely < 1) {
+        particle.y = canvas.height / 2 - particle.r;
     }
-    
-    if (particle.x + particle.w >= canvas.width) {
+
+    // Bounce right
+    if (particle.x + particle.r >= canvas.width) {
         particle.addVelX(-particle.velx);
         particle.addForceX(-0.25);
     }
-    
-    if (particle.x - particle.w <= 0 && particle.velx < 0) {
+
+    // Bounce left
+    if (particle.x - particle.r <= 0 && particle.velx < 0) {
         particle.addVelX(-particle.velx);
         particle.addForceX(0.25);
     }
-    
+
+    // Get rid of left / right vector every update
     particle.velx = particle.velx * 0.90;
+}
+
+function checkCollision(particle) {
+    particles.forEach(function (ball) {
+        if (particle !== ball && particles.length > 1) {
+            // if colided
+            if (getCollision(particle, ball)) {
+
+                let accx = (Math.abs(ball.accx) + Math.abs(particle.accx)) / 2;
+                let accy = (Math.abs(ball.accy) + Math.abs(particle.accy)) / 2;
+
+                swap(particle, ball);
+
+                ball.accx > 0 ? ball.addForceX(-accx) : ball.addForceX(accx);
+                particle.accx > 0 ? particle.addForceX(-accx) : particle.addForceX(accx);
+
+                ball.accy > 0 ? ball.addForceY(-accy) : ball.addForceY(accy);
+                particle.accy > 0 ? particle.addForceY(-accy) : particle.addForceY(accy);
+            }
+        }
+    });
+}
+
+// swap velocities
+function swap (vecX, vecY) {
+    dump = { vx: vecX.velx, vy: vecX.vely };
+    vecX.velx = vecY.velx;
+    vecX.vely = vecY.vely;
+    vecY.velx = dump.vx;
+    vecY.vely = dump.vy;
 }

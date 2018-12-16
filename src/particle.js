@@ -1,11 +1,13 @@
-function Particle(x, y, col) {
-    this.x = x; this.y = y;
-    this.w = 20; this.col = col;
+function Particle(x, y) {
+    this.x = x; this.y = y; this.r = Math.random() * 50; 
+    this.col = getRandomColor();
     this.velx = 0; this.vely = 0;
     this.accx = 0; this.accy = 0;
 
+    this.restitution = 10;
+
     this.show = function () {
-        circle(this.x, this.y, this.w, this.col);
+        circle(this.x, this.y, this.r, this.col);
     }
 
     this.update = function () {

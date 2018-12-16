@@ -25,6 +25,12 @@ function circle(x, y, r, c) {
     context.stroke;
 }
 
+function getCollision(vecA, vecB) {
+    const r = (vecA.r + vecB.r) * (vecA.r + vecB.r);
+    const dist = (vecA.x - vecB.x) * (vecA.x - vecB.x) + (vecA.y - vecB.y) * (vecA.y - vecB.y);
+    return dist < r;
+}
+
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
