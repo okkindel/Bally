@@ -1,10 +1,12 @@
 var canvas, context;
 var particles = [];
 var gravity = 0.25;
+var floor;
 
 window.onload = function () {
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
+    floor = 3 * canvas.height / 4;
 
     const fps = 60;
 
@@ -17,6 +19,7 @@ window.onload = function () {
     }, 1000 / fps);
 }
 
+
 function clear() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
@@ -25,7 +28,7 @@ function draw() {
     particles.forEach(function (item) {
         item.show();
     });
-    line(0, canvas.height / 2, canvas.width, canvas.height / 2, 'black');
+    line(0, floor, canvas.width, floor, 'black');
 }
 
 function update() {

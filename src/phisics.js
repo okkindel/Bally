@@ -1,13 +1,13 @@
 function bounce(particle) {
 
     // Bounce on floor
-    if (particle.y + particle.r >= canvas.height / 2 && particle.vely > 0) {
+    if (particle.y + particle.r >= floor && particle.vely > 0) {
         particle.addForceY(-particle.vely - particle.vely / 1.25);
     }
 
     // Dont drown in floor
-    if (particle.y > canvas.height / 2 - particle.r && particle.vely < 1) {
-        particle.y = canvas.height / 2 - particle.r;
+    if (particle.y > floor - particle.r && particle.vely < 1) {
+        particle.y = floor - particle.r;
     }
 
     // Bounce right
