@@ -1,6 +1,7 @@
-function text(txt, fnt, x, y, c) {
+function text(txt, fnt, x, y, a, c) {
     context.font = fnt;
     context.fillStyle = c;
+    context.textAlign = a;
     context.fillText(txt, x, y);
 }
 

@@ -2,6 +2,7 @@ var canvas, context;
 var particles = [];
 var gravity = 0.25;
 var floor;
+var checkColl = true;
 
 window.onload = function () {
     canvas = document.getElementById('canvas');
@@ -37,8 +38,11 @@ function update() {
     particles.forEach(function (item) {
         item.update();
         bounce(item);
-        checkCollision(item);
+        if (checkColl)
+            checkCollision(item);
     });
+    text("Click on screen to place a ball", "2rem Arial", canvas.width / 2, canvas.height / 4, 'center', 'black');
+    text("Pres C to turn ball collision " + (checkColl == true ? "off" : "on") + ".", "1rem Arial", canvas.width - 20, 30, 'end', 'black');
 }
 
 document.addEventListener('mousedown', function () {
@@ -46,4 +50,10 @@ document.addEventListener('mousedown', function () {
     particle.addForceX(Math.random() - 0.5);
     particle.addForceY(Math.random() * (-10));
     particles.push(particle);
+});
+
+document.addEventListener('keydown', function () {
+    if (event.keyCode == 67) {
+        checkColl = !checkColl;
+    }
 });
