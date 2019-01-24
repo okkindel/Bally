@@ -1,6 +1,6 @@
 # Bally
 
-A simple phisical engine inspired by [Marble Race](https://www.youtube.com/watch?v=1ldxrApreog).
+A simple particle engine inspired by [Marble Race](https://www.youtube.com/watch?v=1ldxrApreog).
 
 Click anywhere to palce a ball. Now, i know, i hate phisics. Just run index.html to play. There is live demo avalible on [my website](https://okkindel.github.io/bally/). Have fun.
 
